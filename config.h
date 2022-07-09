@@ -56,9 +56,12 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL };
-static const char *filecmd[]  = { "thunar", NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *dmenucmd[]    = { "rofi", "-show", "drun", NULL };
+static const char *filecmd[]     = { "thunar", NULL };
+static const char *termcmd[]     = { "alacritty", NULL };
+static const char *suspendcmd[]  = { "systemctl", "suspend", "--now", NULL };
+static const char *poweroffcmd[] = { "systemctl", "poweroff", "--now", NULL };
+static const char *rebootcmd[]   = { "systemctl", "reboot", "--now", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -105,7 +108,9 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	// { ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	{ ClkStatusText,        MODKEY,         Button1,        spawn,          {.v = suspendcmd } },
+	{ ClkStatusText,        MODKEY,         Button2,        spawn,          {.v = poweroffcmd } },
+	{ ClkStatusText,        MODKEY,         Button3,        spawn,          {.v = rebootcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	// { ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
