@@ -56,7 +56,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]    = { "rofi", "-show", "drun", NULL };
+static const char *dmenucmd[]    = { "rofi", "-show", "drun", "-modi", "drun", NULL };
+static const char *calccmd[]     = { "rofi", "-show", "calc", "-modi", "calc", "-no-show-match", "-no-sort", NULL };
 static const char *filecmd[]     = { "thunar", NULL };
 static const char *termcmd[]     = { "alacritty", NULL };
 static const char *suspendcmd[]  = { "systemctl", "suspend", "--now", NULL };
@@ -66,6 +67,7 @@ static const char *rebootcmd[]   = { "systemctl", "reboot", "--now", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_c,      spawn,          {.v = calccmd } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = filecmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	// { MODKEY,                       XK_b,      togglebar,      {0} },
